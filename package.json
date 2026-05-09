@@ -1,0 +1,10 @@
+{
+  "name": "tundra-systems",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "html-minifier-terser --input-dir src --output-dir dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0"
+  }
+}
