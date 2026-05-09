@@ -112,6 +112,214 @@
       fill: #fff;
       flex-shrink: 0;
     }
+
+    /* ── Page background aurora ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 15% 60%, rgba(0, 180, 220, 0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 35% at 85% 25%, rgba(59, 100, 255, 0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 25% at 50% 95%, rgba(0, 210, 180, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      min-height: calc(100vh - 72px);
+      justify-content: center;
+    }
+
+    /* Status chip */
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(0, 210, 200, 0.85);
+      background: rgba(0, 210, 200, 0.07);
+      border: 1px solid rgba(0, 210, 200, 0.18);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+
+    .chip-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #00d2c8;
+      box-shadow: 0 0 6px #00d2c8;
+      animation: blink 2.2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+      color: #fff;
+      max-width: 780px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(100deg, #00e5d4 0%, #3b8bff 60%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(232, 234, 240, 0.45);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.75rem;
+    }
+
+    /* CTA row */
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .btn-begin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.9rem;
+      border-radius: 10px;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #07080d;
+      background: linear-gradient(135deg, #00e5d4 0%, #3bd4ff 100%);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(0, 229, 212, 0.28);
+      transition: box-shadow 0.22s, transform 0.18s;
+    }
+
+    .btn-begin:hover {
+      box-shadow: 0 0 50px rgba(0, 229, 212, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 10px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: rgba(232,234,240,0.65);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.22);
+      color: #e8eaf0;
+    }
+
+    /* Logo card */
+    .hero-logo-card {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .hero-logo-card::before {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,229,212,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo-card img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 8px 40px rgba(0,229,212,0.18));
+    }
+
+    /* Stat pills row */
+    .hero-stats {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3.5rem;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(232,234,240,0.55);
+    }
+
+    .stat-pill strong {
+      color: #e8eaf0;
+      font-weight: 700;
+    }
+
+    /* Grid line overlay */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .hero-stats { gap: 0.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -143,6 +351,17 @@
     </div>
 
   </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Providing Systems for<br /><em>every ER:LC server</em></h1>
+
+    <p class="hero-sub">Revolutionizing ER:LC servers, one roleplay at a time.</p>
+
+    <div class="hero-cta">
+      <a href="#" class="btn-begin">Begin &rarr;</a>
+    </div>
+  </section>
 
 </body>
 </html>
