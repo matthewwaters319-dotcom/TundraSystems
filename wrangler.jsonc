@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tundrasystems",
   "main": "src/worker.js",
-  "account_id": "2697d76b88199c7dae75f07d3405ee4a",
+  "account_id": "8f82b7dfd7ba350ba44d6b808e13d58b",
   "compatibility_date": "2026-05-08",
   "observability": {
     "enabled": true
@@ -17,7 +17,7 @@
   "kv_namespaces": [
     {
       "binding": "TUNDRA_CLAIMS",
-      "id": "c46ffb9773aa47f48f303470365651d6"
+      "id": "43f003de6b4149ed934cf69a33df631a"
     }
   ]
 }
