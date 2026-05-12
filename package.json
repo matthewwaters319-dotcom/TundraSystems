@@ -2,7 +2,7 @@
   "name": "tundra-systems",
   "version": "1.0.0",
   "scripts": {
-    "build": "html-minifier-terser --input-dir src --output-dir dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true && xcopy /Y /I src\\*.png dist\\ && xcopy /Y /I src\\*.jpg dist\\ && xcopy /Y /I src\\*.svg dist\\ && xcopy /Y /I src\\*.ico dist\\"
+    "build": "html-minifier-terser --input-dir src --output-dir dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true && node -e \"const fs=require('fs'),path=require('path');if(!fs.existsSync('dist'))fs.mkdirSync('dist');fs.readdirSync('src').filter(f=>/\\.(png|jpg|jpeg|svg|ico)$/i.test(f)).forEach(f=>{fs.copyFileSync(path.join('src',f),path.join('dist',f));console.log('Copied '+f);})\""
   },
   "devDependencies": {
     "html-minifier-terser": "^7.2.0"
