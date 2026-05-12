@@ -2,7 +2,7 @@
   "name": "tundra-systems",
   "version": "1.0.0",
   "scripts": {
-    "build": "html-minifier-terser --input-dir src --output-dir dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true"
+    "build": "html-minifier-terser --input-dir src --output-dir dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true && xcopy /Y /I src\\*.png dist\\ && xcopy /Y /I src\\*.jpg dist\\ && xcopy /Y /I src\\*.svg dist\\ && xcopy /Y /I src\\*.ico dist\\"
   },
   "devDependencies": {
     "html-minifier-terser": "^7.2.0"

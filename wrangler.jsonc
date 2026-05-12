@@ -1,14 +1,22 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tundrasystems",
+  "main": "src/worker.js",
   "compatibility_date": "2026-05-08",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "dist"
+    "directory": "dist",
+    "binding": "ASSETS"
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "TUNDRA_CLAIMS",
+      "id": "c46ffb9773aa47f48f303470365651d6"
+    }
   ]
 }

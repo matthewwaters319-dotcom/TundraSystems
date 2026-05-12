@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tundra Systems</title>
+  <title>Features — Tundra Systems</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,6 +17,17 @@
       min-height: 100vh;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 15% 60%, rgba(0,180,220,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 35% at 85% 25%, rgba(59,100,255,0.09) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     /* ── Navbar ── */
     .navbar {
       display: flex;
@@ -25,16 +36,16 @@
       padding: 0 3rem;
       height: 72px;
       background: transparent;
+      position: relative;
+      z-index: 10;
     }
 
-    /* Left side: logo + links */
     .nav-left {
       display: flex;
       align-items: center;
       gap: 1.5rem;
     }
 
-    /* Logo */
     .nav-logo {
       display: flex;
       align-items: center;
@@ -49,13 +60,12 @@
       display: block;
     }
 
-    /* Pill container around links */
     .nav-links {
       display: flex;
       align-items: center;
       gap: 0.15rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 100px;
       padding: 0.35rem 0.5rem;
       backdrop-filter: blur(8px);
@@ -65,7 +75,7 @@
     .nav-links a {
       font-size: 0.9375rem;
       font-weight: 500;
-      color: rgba(232, 234, 240, 0.6);
+      color: rgba(232,234,240,0.6);
       text-decoration: none;
       padding: 0.5rem 1.1rem;
       border-radius: 100px;
@@ -73,16 +83,12 @@
       white-space: nowrap;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-links a.active {
       color: #e8eaf0;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
     }
 
-    /* Right side */
-    .nav-right {
-      display: flex;
-      align-items: center;
-    }
+    .nav-right { display: flex; align-items: center; }
 
     .btn-discord {
       display: inline-flex;
@@ -101,22 +107,12 @@
       white-space: nowrap;
     }
 
-    .btn-discord:hover {
-      background: #4752c4;
-      transform: translateY(-1px);
-    }
+    .btn-discord:hover { background: #4752c4; transform: translateY(-1px); }
 
-    .btn-discord svg {
-      width: 20px;
-      height: 20px;
-      fill: #fff;
-      flex-shrink: 0;
-    }
+    .btn-discord svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
 
-    /* Logged-in user pill */
-    .user-wrap {
-      position: relative;
-    }
+    /* User pill */
+    .user-wrap { position: relative; }
 
     .user-pill {
       display: inline-flex;
@@ -130,28 +126,12 @@
       font-weight: 600;
       color: #e8eaf0;
       cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
       user-select: none;
     }
 
-    .user-pill:hover { background: rgba(255,255,255,0.1); }
+    .user-pill img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
 
-    .user-pill img {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .user-pill .chevron {
-      width: 14px;
-      height: 14px;
-      opacity: 0.5;
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
+    .user-pill .chevron { width: 14px; height: 14px; opacity: 0.5; transition: transform 0.2s; }
 
     .user-wrap.open .chevron { transform: rotate(180deg); }
 
@@ -189,91 +169,33 @@
       text-align: left;
     }
 
-    .dropdown-item:hover {
-      background: rgba(255,255,255,0.05);
-      color: #e8eaf0;
-    }
+    .dropdown-item:hover { background: rgba(255,255,255,0.05); color: #e8eaf0; }
+    .dropdown-item.danger:hover { background: rgba(237,66,69,0.12); color: #f87171; }
+    .dropdown-item svg { width: 15px; height: 15px; flex-shrink: 0; opacity: 0.6; }
 
-    .dropdown-item.danger:hover {
-      background: rgba(237,66,69,0.12);
-      color: #f87171;
-    }
-
-    .dropdown-item svg {
-      width: 15px;
-      height: 15px;
-      flex-shrink: 0;
-      opacity: 0.6;
-    }
-
-    /* ── Page background aurora ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 55% 40% at 15% 60%, rgba(0, 180, 220, 0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 35% at 85% 25%, rgba(59, 100, 255, 0.09) 0%, transparent 65%),
-        radial-gradient(ellipse 30% 25% at 50% 95%, rgba(0, 210, 180, 0.05) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── Hero ── */
-    .hero {
+    /* ── Page Content ── */
+    .page {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 5rem 2rem 8rem;
+    }
+
+    .page-header {
       text-align: center;
-      padding: 7rem 2rem 5rem;
-      min-height: calc(100vh - 72px);
-      justify-content: center;
+      margin-bottom: 4rem;
     }
 
-    /* Status chip */
-    .hero-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: rgba(0, 210, 200, 0.85);
-      background: rgba(0, 210, 200, 0.07);
-      border: 1px solid rgba(0, 210, 200, 0.18);
-      padding: 0.3rem 0.9rem;
-      border-radius: 100px;
-      margin-bottom: 2rem;
-    }
-
-    .chip-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #00d2c8;
-      box-shadow: 0 0 6px #00d2c8;
-      animation: blink 2.2s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.5rem);
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
       font-weight: 800;
-      letter-spacing: -0.045em;
-      line-height: 1.06;
-      color: #fff;
-      max-width: 780px;
-      margin-bottom: 1.4rem;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
 
-    .hero h1 em {
+    .page-header h1 em {
       font-style: normal;
       background: linear-gradient(100deg, #00e5d4 0%, #3b8bff 60%, #a78bfa 100%);
       -webkit-background-clip: text;
@@ -281,158 +203,120 @@
       background-clip: text;
     }
 
-    .hero-sub {
-      font-size: 1.05rem;
-      color: rgba(232, 234, 240, 0.45);
-      line-height: 1.75;
+    .page-header p {
+      font-size: 1rem;
+      color: rgba(232,234,240,0.45);
       max-width: 480px;
-      margin-bottom: 2.75rem;
+      margin: 0 auto;
+      line-height: 1.7;
     }
 
-    /* CTA row */
-    .hero-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 4.5rem;
+    /* Feature grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
 
-    .btn-begin {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.9rem;
-      border-radius: 10px;
-      font-size: 0.9375rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #07080d;
-      background: linear-gradient(135deg, #00e5d4 0%, #3bd4ff 100%);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 30px rgba(0, 229, 212, 0.28);
-      transition: box-shadow 0.22s, transform 0.18s;
+    @media (max-width: 680px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .navbar { padding: 0 1.25rem; }
+      .nav-links { display: none; }
     }
 
-    .btn-begin:hover {
-      box-shadow: 0 0 50px rgba(0, 229, 212, 0.45);
-      transform: translateY(-2px);
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.75rem 1.6rem;
-      border-radius: 10px;
-      font-size: 0.9375rem;
-      font-weight: 500;
-      text-decoration: none;
-      color: rgba(232,234,240,0.65);
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.1);
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.22);
-      color: #e8eaf0;
-    }
-
-    /* Logo card */
-    .hero-logo-card {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    .hero-logo-card::before {
-      content: '';
-      position: absolute;
-      inset: -60px;
-      background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,229,212,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-logo-card img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 8px 40px rgba(0,229,212,0.18));
-    }
-
-    /* Stat pills row */
-    .hero-stats {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 3.5rem;
-    }
-
-    .stat-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.55rem 1.1rem;
-      border-radius: 100px;
-      background: rgba(255,255,255,0.04);
+    .feature-card {
+      background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.07);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: rgba(232,234,240,0.55);
+      border-radius: 18px;
+      padding: 2rem;
+      transition: border-color 0.25s, transform 0.22s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .stat-pill strong {
-      color: #e8eaf0;
-      font-weight: 700;
-    }
-
-    /* Grid line overlay */
-    .hero::after {
+    .feature-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 75%);
-      pointer-events: none;
-      z-index: 0;
+      background: linear-gradient(135deg, rgba(0,229,212,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s;
     }
 
-    .hero > * { position: relative; z-index: 1; }
+    .feature-card:hover::before { opacity: 1; }
 
-    @media (max-width: 640px) {
-      .hero { padding: 5rem 1.5rem 3rem; }
-      .hero-stats { gap: 0.5rem; }
+    .feature-card:hover {
+      border-color: rgba(0,229,212,0.2);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0,229,212,0.12) 0%, rgba(59,139,255,0.12) 100%);
+      border: 1px solid rgba(0,229,212,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #00e5d4;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-card h3 {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+      color: #e8eaf0;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: rgba(232,234,240,0.5);
+      line-height: 1.75;
+    }
+
+    /* Coming soon banner */
+    .coming-soon {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: rgba(232,234,240,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    .coming-soon span {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      border: 1px dashed rgba(255,255,255,0.1);
+      border-radius: 100px;
     }
   </style>
 </head>
 <body>
 
   <nav class="navbar">
-
-    <!-- Left: Logo + Nav Links -->
     <div class="nav-left">
-      <a href="#" class="nav-logo">
-        <img src="TundraLogo.png" alt="Tundra Systems" />
+      <a href="/" class="nav-logo">
+        <img src="/TundraLogo.png" alt="Tundra Systems" />
       </a>
       <div class="nav-links">
-        <a href="/features">Features</a>
+        <a href="/features" class="active">Features</a>
         <a href="/pricing">Pricing</a>
         <a href="#">Dashboard</a>
         <a href="https://discord.gg/3WnwKdWYsK" target="_blank" rel="noopener">Support</a>
       </div>
     </div>
-
-    <!-- Right -->
     <div class="nav-right" id="nav-right">
       <a href="#" id="discord-btn" class="btn-discord">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -441,25 +325,60 @@
         Login with Discord
       </a>
     </div>
-
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Providing Systems for<br /><em>every ER:LC server</em></h1>
-
-    <p class="hero-sub">Revolutionizing ER:LC servers, one roleplay at a time.</p>
-
-    <div class="hero-cta">
-      <a href="#" class="btn-begin">Begin &rarr;</a>
+  <main class="page">
+    <div class="page-header">
+      <h1>Everything your server<br /><em>needs to operate.</em></h1>
+      <p>Tundra Systems is packed with tools built specifically for serious ER:LC communities.</p>
     </div>
-  </section>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <h3>ER:LC API Access</h3>
+        <p>We integrate the ER:LC API into our CAD with no additional cost, including live maps, player counters, and much more.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Custom Records</h3>
+        <p>We have a huge list of customizable records and the ability to add your own records tailored to your community's needs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Discord Integration</h3>
+        <p>We have permission syncing between Discord roles and CAD permissions. Simply add our "Tundra Systems" bot to your server.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Searchable Records</h3>
+        <p>With our advanced searching system, you can setup custom search types to search anything on your records!</p>
+      </div>
+
+    </div>
+
+    <div class="coming-soon">
+      <span>✦ &nbsp; and much much more on the way...</span>
+    </div>
+  </main>
 
   <script>
     const CLIENT_ID = '1502490442879733821';
 
     function getRedirectUri() {
-      return window.location.origin + window.location.pathname;
+      return window.location.origin + '/';
     }
 
     function loginWithDiscord() {
@@ -483,7 +402,6 @@
         ? 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar + '.png?size=64'
         : 'https://cdn.discordapp.com/embed/avatars/' + (Number(user.discriminator || 0) % 5) + '.png';
       const name = user.global_name || user.username;
-
       const navRight = document.getElementById('nav-right');
       navRight.innerHTML = `
         <div class="user-wrap" id="user-wrap">
@@ -505,13 +423,10 @@
             </button>
           </div>
         </div>`;
-
       document.getElementById('user-pill').addEventListener('click', function() {
         document.getElementById('user-wrap').classList.toggle('open');
       });
-
       document.getElementById('logout-btn').addEventListener('click', logout);
-
       document.addEventListener('click', function(e) {
         const wrap = document.getElementById('user-wrap');
         if (wrap && !wrap.contains(e.target)) wrap.classList.remove('open');
@@ -520,9 +435,7 @@
 
     async function loadUser(token) {
       const cached = localStorage.getItem('discord_user');
-      if (cached) {
-        showUser(JSON.parse(cached));
-      }
+      if (cached) showUser(JSON.parse(cached));
       try {
         const res = await fetch('https://discord.com/api/users/@me', {
           headers: { Authorization: 'Bearer ' + token }
@@ -536,38 +449,21 @@
         const user = await res.json();
         localStorage.setItem('discord_user', JSON.stringify(user));
         showUser(user);
-      } catch (_) {
-        if (!cached) {
-          localStorage.removeItem('discord_token');
-          localStorage.removeItem('discord_user');
-        }
-      }
+      } catch (_) {}
     }
 
     document.addEventListener('DOMContentLoaded', async function() {
-      const hash = window.location.hash.slice(1);
-      if (hash) {
-        const params = new URLSearchParams(hash);
-        const token = params.get('access_token');
-        if (token) {
-          localStorage.setItem('discord_token', token);
-          history.replaceState(null, '', window.location.pathname);
-          await loadUser(token);
-          return;
-        }
-      }
-
       const stored = localStorage.getItem('discord_token');
       if (stored) {
         await loadUser(stored);
         return;
       }
-
       document.getElementById('discord-btn').addEventListener('click', function(e) {
         e.preventDefault();
         loginWithDiscord();
       });
     });
   </script>
+
 </body>
 </html>
