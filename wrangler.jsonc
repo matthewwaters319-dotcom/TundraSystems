@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tundrasystems",
   "main": "src/worker.js",
+  "account_id": "2697d76b88199c7dae75f07d3405ee4a",
   "compatibility_date": "2026-05-08",
   "observability": {
     "enabled": true
